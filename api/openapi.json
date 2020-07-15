@@ -1,0 +1,105 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "calender",
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/v1"
+    }
+  ],
+  "paths": {
+    "/calender": {
+      "get": {
+        "summary": "Details about a calender",
+        "operationId": "listCalender",
+        "tags": [
+          "calender"
+        ],
+        "responses": {
+          "200": {
+            "description": "Details about a calender",
+            "headers": {
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Calender"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Calender": {
+        "type": "object",
+        "required": [
+          "id",
+          "what",
+          "who",
+          "where",
+          "when",
+          "takes"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "what": {
+            "type": "string"
+          },
+          "who": {
+            "type": "string"
+          },
+          "where": {
+            "type": "string"
+          },
+          "when": {
+            "type": "string"
+          },
+          "takes": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

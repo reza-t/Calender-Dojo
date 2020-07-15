@@ -1,0 +1,99 @@
+swagger: "2.0"
+info:
+  description: "Coding DOJO"
+  version: "1.0.0"
+  title: "Calender"
+host: "localhost:8080"
+basePath: "/v1"
+tags:
+  - name: "Calender"
+    description: "Save your Appointments"
+
+schemes:
+  - "http"
+paths:
+  /calender:
+    put:
+      tags:
+        - "Calender"
+      summary: "Add new calender"
+      description: ""
+      operationId: "updateCalender"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Calender object that needs to be added to the store"
+          required: true
+          schema:
+            $ref: "#/definitions/Calender"
+      responses:
+        "200":
+          description: "success"
+        "201":
+          description: "Failed"
+    get:
+      tags:
+        - "Calender"
+      summary: "Finds all dated"
+      description: ""
+      operationId: "findCalender"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Calender"
+        "201":
+          description: "Invalid status value"
+  /calender/{id}:
+    delete:
+      tags:
+        - "Calender"
+      summary: "Deletes a date"
+      description: ""
+      operationId: "deleteCalender"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "calender id to delete"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "deleted calender"
+        "201":
+          description: "Pet not found"
+
+definitions:
+  Calender:
+    type: "object"
+    required:
+      - "what"
+      - "who"
+      - "where"
+      - "when"
+      - "takes"
+    properties:
+      id:
+        type: "string"
+      what:
+        type: "string"
+      who:
+        type: "string"
+      where:
+        type: "string"
+      when:
+        type: "string"
+      takes:
+        type: "integer"
+        format: "int32"
+        description: "Duration Time"
