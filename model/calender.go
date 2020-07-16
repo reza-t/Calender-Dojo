@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-const filename = "calender"
+const filename = "db"
 
 
 type Calender struct {
