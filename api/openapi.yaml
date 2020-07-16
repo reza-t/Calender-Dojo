@@ -33,7 +33,7 @@ paths:
       responses:
         "200":
           description: "success"
-        "201":
+        "400":
           description: "Failed"
     get:
       tags:
@@ -50,7 +50,7 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Calender"
-        "201":
+        "400":
           description: "Invalid status value"
   /calender/{id}:
     delete:
@@ -70,8 +70,8 @@ paths:
       responses:
         "200":
           description: "deleted calender"
-        "201":
-          description: "Pet not found"
+        "400":
+          description: "calender not found"
 
 definitions:
   Calender:

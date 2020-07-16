@@ -10,7 +10,7 @@ import (
 func GetCalender(c *gin.Context) {
 	findCalender, err := controller.CalenderCtrl.GetAll()
 	if err != nil {
-		c.JSON(201, gin.H{"message": err.Error()})
+		c.JSON(400, gin.H{"message": err.Error()})
 	}
 	c.JSON(200, findCalender)
 }
@@ -23,7 +23,7 @@ func PutCalender(c *gin.Context) {
 		err := controller.CalenderCtrl.Save(cal)
 
 		if err != nil {
-			c.JSON(201, gin.H{"message": err.Error()})
+			c.JSON(400, gin.H{"message": err.Error()})
 		}
 		c.JSON(200, gin.H{"result": "OK"})
 	}
@@ -34,7 +34,7 @@ func DeleteCalender(c *gin.Context) {
 	id := c.Param("id")
 	err := controller.CalenderCtrl.DeleteByID(id)
 	if err != nil {
-		c.JSON(201, gin.H{"message": err.Error()})
+		c.JSON(400, gin.H{"message": err.Error()})
 	}
 	c.JSON(200, gin.H{"result": "OK"})
 }
