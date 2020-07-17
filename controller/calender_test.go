@@ -25,8 +25,6 @@ func (m mockCalenderModel) FindAndDeleteByID(id string) (int, error) {
 }
 
 func Test_calender_DeleteByID(t *testing.T) {
-	model.CalenderModel = &mockCalenderModel{}
-
 	type args struct {
 		id string
 	}
@@ -56,7 +54,7 @@ func Test_calender_DeleteByID(t *testing.T) {
 	for _, tt := range tests {
 		mockDeleteByID = tt.mockDeleteById
 		t.Run(tt.name, func(t *testing.T) {
-			ca := &calender{}
+			ca := &calender{db: mockCalenderModel{}}
 			if err := ca.DeleteByID(tt.args.id); (err != nil) != tt.wantErr {
 				t.Errorf("DeleteByID() error = %v, wantErr %v", err, tt.wantErr)
 			}
